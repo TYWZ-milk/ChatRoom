@@ -4,8 +4,7 @@ let http = require("http"),
     fs = require("fs"),
     url = require('url'),
     path = require('path'),
-    mime = require('mime'),
-    path = require('path');
+    mime = require('mime');
 
 // Listen for HTTP connections.  This is essentially a miniature static file server that only serves our one file, client.html:
 let app = http.createServer(function(req, resp){
