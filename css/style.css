@@ -1,0 +1,219 @@
+.titile{
+    text-align: center;
+    font-size: 50px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-family: algerian, courier, serif;
+}
+.login-button{
+    line-height: 3.3rem;
+    background-color: green;
+    color: white;
+    border: 1px solid;
+    border-radius: .25rem;
+    width: 22rem;
+    font-size: 25px;
+}
+.reg-button{
+    line-height: 3.3rem;
+    background-color: orangered;
+    color: white;
+    border: 1px solid;
+    border-radius: .25rem;
+    width: 22rem;
+    font-size: 25px;
+}
+.center{
+    text-align: center;
+    margin-top: 30px;
+}
+.login-form{
+    text-align: center;
+}
+.login-input{
+    width: 40%;
+    height: 2.0rem;
+    display: block;
+    margin-left: 30%;
+    margin-top: 10px;
+}
+.left-btn{
+    float: right;
+}
+.upload-file{
+    text-align: center;
+}
+.welcome{
+    text-align: center;
+    font-size: 30px;
+}
+.header{
+    background-color: darkred;
+    width: 101%;
+    height: 50px;
+    margin-top: -12px;
+    margin-left: -8px;
+    position:fixed;
+}
+.btn-logout{
+    margin-top:10px;
+    margin-left:10px;
+    width:90px;
+}
+.btn-login{
+    margin-top:10px;
+    margin-left:75%;
+    width:90px;
+}
+.btn-signup{
+    margin-top:10px;
+    margin-left:10px;
+    width:90px;
+}
+.btn-size{
+    margin-left: 5px;
+    width:100px;
+}
+.btn-form{
+    display: inline;
+}
+.list-files{
+    display: flex;
+    margin-left: 35%;
+}
+.history{
+    margin-left: 25px;
+    margin-top: 30px;
+    font-size: 30px;
+    font-family: algerian, courier, serif;
+}
+.news-list{
+    margin-top: 2%;
+    width:80%;
+    margin-left: 10%;
+}
+.search-form{
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+.story-btn{
+    margin-top:10px;
+    margin-left: 10px;
+}
+.nav-font{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.alice-blue{
+    color:aliceblue;
+}
+.content{
+    width: 80%;
+    margin-left: 10%;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.text-over{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.flex{
+    display: flex;
+}
+.forget-button{
+    line-height: 3.3rem;
+    background-color: cornflowerblue;
+    color: white;
+    border: 1px solid;
+    border-radius: .25rem;
+    width: 22rem;
+    font-size: 25px;
+}
+.cal-td{
+    width:100px;
+    height:100px;
+    max-width: 100px;
+    overflow: hidden;
+    text-align: center;
+}
+.cal-div{
+    width:100%;
+}
+.prev-month{
+    color:gray;
+}
+.overlayDiv {
+    position: fixed;
+    top: 20%;
+    left: 30%;
+    width: 30%;
+    height: 100%;
+    z-index: 99;
+    visibility: hidden;
+}
+.margin-20{
+    margin:20px;
+}
+.wrong-input{
+    color: red;
+    visibility: hidden;
+}
+.chat-content{
+    height:100%;
+    padding-top: 1%;
+    padding-bottom: 9%;
+}
+.chat-mes{
+    border-radius: 20px;
+    width: 40%;
+    margin-left: 2%;
+    margin-top: 2%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.chat-input{
+    position:fixed;
+    bottom: 0;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    width: 100%;
+}
+.chat-member{
+    font-size: 30px;
+    margin-top: 7px;
+}
+.left-nav{
+    margin-left:70%;
+}
+
+.checkbox-private{
+    visibility: hidden;
+}
+
+.room-name{
+    display: block;
+    padding: .5rem 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    color: chartreuse;
+}
+.my-mes{
+    margin-left: 58%;
+}

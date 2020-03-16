@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+    <title>Chat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<script src="js/index.js"></script>
+<script src="chat-server.js"></script>
+<body>
+<!--top menu-->
+<div class="header">
+    <ul class="nav nav-font" id="header">
+        <li id="login">
+            <button class="nav-link btn btn-link" onclick="showLogin()">Sign In</button>
+        </li>
+        <li id="register">
+            <button class="nav-link btn btn-link" onclick="showRegister()">Sign Up</button>
+        </li>
+        <li id="logout">
+            <button class="nav-link btn btn-link" onclick="logout()">Log out</button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link" onclick="showMembers()">Group Members</button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link" onclick="showPanelNewRoom()">Create Room</button>
+        </li>
+        <li>
+            <button class="nav-link btn btn-link" onclick="showPanelAllRooms()">Room List</button>
+        </li>
+        <li>
+            <p class="room-name" id="cur_roomName">Main Lobby</p>
+        </li>
+    </ul>
+</div>
+<!--    panel of login-->
+<div class="overlayDiv" id="panel_login">
+    <div class="card">
+        <div class="margin-20">
+            <div class="form-group">
+                <label for="login_username">Username</label>
+                <input type="text" class="form-control" id="login_username">
+            </div>
+            <div class="form-group">
+                <label for="login_password">Password</label>
+                <input type="password" class="form-control" id="login_password">
+            </div>
+            <div class="form-group">
+                <label class="wrong-input" id="wrong-input">Please check input</label>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="login()">Login</button>
+            <button type="submit" class="btn btn-secondary" onclick="closePanel()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!--    panel of register-->
+<div class="overlayDiv" id="panel_register">
+    <div class="card">
+        <div class="margin-20">
+            <div class="form-group">
+                <label for="exampleInputEmail6">Username</label>
+                <input type="text" class="form-control" id="exampleInputEmail6">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword2">Input Password Again</label>
+                <input type="password" class="form-control" id="exampleInputPassword2">
+            </div>
+            <div class="form-group">
+                <label class="wrong-input">Please check input</label>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="signup()">Sign Up</button>
+            <button type="submit" class="btn btn-secondary" onclick="closePanel()">Cancel</button>
+        </div>
+    </div>
+</div>
+<!--    panel of new room-->
+<div class="overlayDiv" id="panel_newroom">
+    <div class="card">
+        <div class="margin-20">
+            <div class="form-group">
+                <label for="newRoomName">New Chat Room Name</label>
+                <input type="text" class="form-control" id="newRoomName">
+            </div>
+            <div class="form-group">
+                <input type="checkbox" aria-label="Checkbox for following text input" id="private">    Private
+            </div>
+            <div class="form-group" id="private_password">
+                <label for="exampleInputPassword">Password(Your password will be ignored unless you check 'Private')</label>
+                <input type="password" class="form-control" id="exampleInputPassword">
+            </div>
+            <div class="form-group">
+                <label class="wrong-input" id="wrong-input-roomName">Please check input</label>
+            </div>
+            <button type="submit" class="btn btn-primary" onclick="newRoom()">Create</button>
+            <button type="submit" class="btn btn-secondary" onclick="closePanel()">Cancel</button>
+        </div>
+    </div>
+</div>
+<!--   panel of members-->
+<div class="overlayDiv" id="panel_member">
+    <div class="card">
+        <div class="margin-20">
+            <h5 class="card-title">Members of this chat room</h5>
+            <div id="list-user">
+<!--            <div class="form-group">-->
+<!--                <label>Username</label>-->
+<!--                <button class="btn btn-outline-danger" type="button">Remove</button>-->
+<!--                <button class="btn btn-outline-secondary" type="button">Ban</button>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label>Username</label>-->
+<!--                <button class="btn btn-outline-danger" type="button">Remove</button>-->
+<!--                <button class="btn btn-outline-secondary" type="button">Ban</button>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label>Username</label>-->
+<!--                <button class="btn btn-outline-danger" type="button">Remove</button>-->
+<!--                <button class="btn btn-outline-secondary" type="button">Ban</button>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label>Username</label>-->
+<!--                <button class="btn btn-outline-danger" type="button">Remove</button>-->
+<!--                <button class="btn btn-outline-secondary" type="button">Ban</button>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label>Username</label>-->
+<!--                <button class="btn btn-outline-danger" type="button">Remove</button>-->
+<!--                <button class="btn btn-outline-secondary" type="button">Ban</button>-->
+<!--            </div>-->
+            </div>
+        </div>
+        <button class="btn btn-outline-secondary" type="button" onclick="closePanel()">Close</button>
+    </div>
+</div>
+<div class="overlayDiv" id="panel_allrooms">
+    <div class="card">
+        <div class="margin-20">
+            <h5 class="card-title">All chat rooms</h5>
+            <div id="room-list">
+<!--            <div class="form-group">-->
+<!--                <label>Room Name</label>-->
+<!--                <label>Creater: user1</label>-->
+<!--                <button class="btn btn-outline-primary" type="button">Enter</button>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label>Username</label>-->
+<!--                <label>Creater: user1</label>-->
+<!--                <button class="btn btn-outline-primary" type="button">Enter</button>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--                <label>Username</label>-->
+<!--                <label>Creater: user1</label>-->
+<!--                <button class="btn btn-outline-primary" type="button">Enter</button>-->
+<!--            </div>-->
+            </div>
+        </div>
+        <button class="btn btn-outline-secondary" type="button" onclick="closePanel()">Close</button>
+    </div>
+</div>
+<div id="chat_room" style="overflow:auto;">
+    <div class="chat-content" id="chat_content">
+        <div class="chat-mes">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Username</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="chat-mes">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Username</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="chat-mes">
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Username</h6>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="chat-input">
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <div>
+                <select class="custom-select" id="inputGroupSelect01">
+                    <option selected value="0">Public</option>
+                    <option value="1">User1</option>
+                    <option value="2">User2</option>
+                    <option value="3">User3</option>
+                </select>
+            </div>
+            <input type="text" class="form-control" aria-label="Recipient's username" id="message" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="sendMSM" onclick="sendMsg()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
