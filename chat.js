@@ -147,7 +147,6 @@ function sendMsg() {
 
     socketio.emit("message_to_server", {message:message});
 
-    window.scrollTo(0,document.body.scrollHeight);
     input.value="";
 }
 
@@ -163,4 +162,5 @@ socketio.on("message_to_client",function(data) {
         "                <p class=\"card-text\"><small class=\"text-muted\">"+time+"</small></p>" +
         "            </div>" +
         "        </div>";
+    window.scrollTo(0,document.body.scrollHeight*2);
 });
