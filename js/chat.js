@@ -151,7 +151,7 @@ function sendMsg() {
     input.value="";
 }
 
-var socketio = io.connect();
+let socketio = io.connect();
 socketio.on("message_to_client",function(data) {
     //Append an HR thematic break and the escaped HTML of the new message
     let chat_content = document.getElementById("chat_content");
