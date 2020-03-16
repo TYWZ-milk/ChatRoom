@@ -1,5 +1,4 @@
 //display different panels by clicking different buttons
-let current_room = "message_to_server";
 function showMembers(){
     groupMem();
     let panel = document.getElementById("panel_member");
@@ -136,11 +135,6 @@ function enterRoom() {
     let input = document.getElementById("message");
     input.value="";
 
-    io.on('connection', function(socket){
-        current_room = "someroom";
-        socket.join(current_room);
-    });
-
     closePanel();
 }
 
@@ -151,7 +145,7 @@ function sendMsg() {
 
     let select = document.getElementById("inputGroupSelect01").value;
 
-    socketio.emit(current_room, {message:message});
+    socketio.emit("message_to_server", {message:message});
 
     input.value="";
 }

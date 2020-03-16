@@ -45,7 +45,7 @@ let app = http.createServer(function(req, resp){
 
     // This callback runs when a new connection is made to our HTTP server.
 
-    fs.readFile("chat.html", function(err, data){
+    fs.readFile("static/chat.html", function(err, data){
         // This callback runs when the client.html file has been read from the filesystem.
 
         if(err) return resp.writeHead(500);
