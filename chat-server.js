@@ -9,7 +9,7 @@ let http = require("http"),
 // Listen for HTTP connections.  This is essentially a miniature static file server that only serves our one file, client.html:
 let app = http.createServer(function(req, resp){
 
-    var filename = path.join(__dirname, "static", url.parse(req.url).pathname);
+    var filename = path.join(__dirname, "ChatRoom", url.parse(req.url).pathname);
     (fs.exists || path.exists)(filename, function(exists){
         if (exists) {
             fs.readFile(filename, function(err, data){
