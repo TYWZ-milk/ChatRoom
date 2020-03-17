@@ -94,13 +94,13 @@ function roomList() {
     list_room.innerHTML = "            <div class=\"form-group\">" +
         "                <label>Room Name</label>" +
         "                <label>Creater: user1</label>" +
-        "                <button class=\"btn btn-outline-primary\" type=\"button\" onclick=\"enterRoom()\">Enter</button>" +
+        "                <button class=\"btn btn-outline-primary\" type=\"button\" onclick=\"enterRoom(0)\">Enter</button>" +
         "            </div>";
-    for(let i =0;i<3;i++){
+    for(let i =1;i<3;i++){
         list_room.innerHTML +="            <div class=\"form-group\">" +
             "                <label>Room Name"+i+"</label>" +
             "                <label>Creater: user1</label>" +
-            "                <button class=\"btn btn-outline-primary\" type=\"button\" onclick=\"enterRoom()\">Enter</button>" +
+            "                <button class=\"btn btn-outline-primary\" type=\"button\" onclick=\"enterRoom("+i+")\">Enter</button>" +
             "            </div>";
     }
 }
@@ -125,7 +125,7 @@ function newRoom() {
 }
 
 //enter a room
-function enterRoom() {
+function enterRoom(id) {
     let curRoomName = document.getElementById("cur_roomName");
     curRoomName.textContent = "wooo";
 
@@ -135,7 +135,7 @@ function enterRoom() {
     let input = document.getElementById("message");
     input.value="";
 
-    currentRoom = 2;
+    currentRoom = parseInt(id);
     closePanel();
 }
 
@@ -151,7 +151,7 @@ function sendMsg() {
     input.value="";
 }
 
-let currentRoom = 1;
+let currentRoom = -1;
 let socketio = io.connect();
 socketio.on("message_to_client",function(data) {
     if(data['room'] === currentRoom) {
