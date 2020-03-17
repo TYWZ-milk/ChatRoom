@@ -38,6 +38,13 @@ function closePanel() {
     panel.style.visibility="hidden";
     panel = document.getElementById("panel_allrooms");
     panel.style.visibility="hidden";
+    panel = document.getElementById("wrong-input-login");
+    panel.style.visibility="hidden";
+    panel = document.getElementById("wrong-input-register");
+    panel.style.visibility="hidden";
+    panel = document.getElementById("wrong-input-roomName");
+    panel.style.visibility="hidden";
+
 }
 
 //login
@@ -90,18 +97,29 @@ function groupMem(){
     let list_user = document.getElementById("list-user");
     list_user.innerHTML = "            <div class=\"form-group\">" +
         "                <label>User1</label>" +
-        "                <button class=\"btn btn-outline-danger\" type=\"button\">Remove</button>" +
-        "                <button class=\"btn btn-outline-secondary\" type=\"button\">Ban</button>" +
+        "                <button class=\"btn btn-outline-danger\" type=\"button\" onclick=\"removeuser(0)\">Remove</button>" +
+        "                <button class=\"btn btn-outline-secondary\" type=\"button\" onclick=\"banuser(0)\">Ban</button>" +
         "            </div>";
     for(let i =0;i<5;i++){
         list_user.innerHTML +="            <div class=\"form-group\">" +
             "                <label>User"+i+"</label>" +
-            "                <button class=\"btn btn-outline-danger\" type=\"button\">Remove</button>" +
-            "                <button class=\"btn btn-outline-secondary\" type=\"button\">Ban</button>" +
+            "                <button class=\"btn btn-outline-danger\" type=\"button\" onclick=\"removeuser("+i+")\">Remove</button>" +
+            "                <button class=\"btn btn-outline-secondary\" type=\"button\" onclick=\"banuser("+i+")\">Ban</button>" +
             "            </div>";
     }
 }
 
+//remove a user from room
+function removeuser(id) {
+
+    closePanel();
+}
+
+//ban a user from room
+function banuser(id) {
+
+    closePanel();
+}
 //room list
 function roomList() {
     let list_room = document.getElementById("room-list");
@@ -165,10 +183,12 @@ function sendMsg() {
 
     input.value="";
 }
-
+//current room id. default is main lobby.
 let currentRoom = -1;
+//send message to whom
 let toWhom = 0;
-let fromWhom = 0;
+//room owner's id
+let currentRoomOwner = 0;
 let socketio = io.connect();
 socketio.on("message_to_client",function(data) {
     if(data['room'] === currentRoom) {
