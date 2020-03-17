@@ -135,13 +135,10 @@ function enterRoom() {
     let input = document.getElementById("message");
     input.value="";
 
-    socketio.on('connection', function(socket){
-        socket.join('someroom');
-    });
-    currentRoom = "someroom";
+    currentRoom = 2;
     closePanel();
 }
-let currentRoom = "message_to_server";
+
 //send message
 function sendMsg() {
     let input = document.getElementById("message");
@@ -149,22 +146,25 @@ function sendMsg() {
 
     let select = document.getElementById("inputGroupSelect01").value;
 
-    socketio.emit(currentRoom, {message:message});
+    socketio.emit("message_to_server", {message:message,room:currentRoom});
 
     input.value="";
 }
 
+let currentRoom = 1;
 let socketio = io.connect();
 socketio.on("message_to_client",function(data) {
-    //Append an HR thematic break and the escaped HTML of the new message
-    let chat_content = document.getElementById("chat_content");
-    let time = new Date().toLocaleString( );
-    chat_content.innerHTML+="        <div class=\"chat-mes\">" +
-        "            <div class=\"card-body\">" +
-        "                <h6 class=\"card-subtitle mb-2 text-muted\">Username</h6>" +
-        "                <p class=\"card-text\">"+data['message']+"</p>" +
-        "                <p class=\"card-text\"><small class=\"text-muted\">"+time+"</small></p>" +
-        "            </div>" +
-        "        </div>";
-    window.scrollTo(0,document.body.scrollHeight*2);
+    if(data['room'] === 1) {
+        //Append an HR thematic break and the escaped HTML of the new message
+        let chat_content = document.getElementById("chat_content");
+        let time = new Date().toLocaleString();
+        chat_content.innerHTML += "        <div class=\"chat-mes\">" +
+            "            <div class=\"card-body\">" +
+            "                <h6 class=\"card-subtitle mb-2 text-muted\">Username</h6>" +
+            "                <p class=\"card-text\">" + data['message'] + "</p>" +
+            "                <p class=\"card-text\"><small class=\"text-muted\">" + time + "</small></p>" +
+            "            </div>" +
+            "        </div>";
+        window.scrollTo(0, document.body.scrollHeight * 2);
+    }
 });
