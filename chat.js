@@ -154,7 +154,7 @@ function sendMsg() {
 let currentRoom = 1;
 let socketio = io.connect();
 socketio.on("message_to_client",function(data) {
-    if(data['room'] === 1) {
+    if(data['room'] === currentRoom) {
         //Append an HR thematic break and the escaped HTML of the new message
         let chat_content = document.getElementById("chat_content");
         let time = new Date().toLocaleString();
