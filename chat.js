@@ -135,9 +135,13 @@ function enterRoom() {
     let input = document.getElementById("message");
     input.value="";
 
+    socketio.on('connection', function(socket){
+        socket.join('someroom');
+    });
+    currentRoom = "someroom";
     closePanel();
 }
-
+let currentRoom = "message_to_server";
 //send message
 function sendMsg() {
     let input = document.getElementById("message");
@@ -145,7 +149,7 @@ function sendMsg() {
 
     let select = document.getElementById("inputGroupSelect01").value;
 
-    socketio.emit("message_to_server", {message:message});
+    socketio.emit(currentRoom, {message:message});
 
     input.value="";
 }
