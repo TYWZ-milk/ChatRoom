@@ -58,7 +58,8 @@ function login() {
         document.getElementById("wrong-input-login").style.visibility = "visible";
         return;
     }
-
+    login_username = "";
+    login_password = "";
     let login = document.getElementById("login");
     login.style.display="none";
     let register = document.getElementById("register");
@@ -89,6 +90,10 @@ function signup() {
         document.getElementById("wrong-input-register").style.visibility = "visible";
         return;
     }
+
+    register_username = "";
+    register_password = "";
+    register_repassword = "";
     closePanel();
 }
 
@@ -140,6 +145,7 @@ function roomList() {
 //create new chat room
 function newRoom() {
     let newRoomName = document.getElementById("newRoomName").value;
+    let password = document.getElementById("private_password").value;
     const regex = /^[\sa-zA-Z0-9,.:;"?!@#$%^&*()_+<>]+$/g;
     if(!newRoomName.match(regex)){
         document.getElementById("wrong-input-roomName").style.visibility = "visible";
@@ -147,7 +153,10 @@ function newRoom() {
     }
 
     if(document.getElementById("private").checked) {
-
+        if (password === ""){
+            document.getElementById("wrong-input-roomName").style.visibility = "visible";
+            return;
+        }
     }
     else{
 
