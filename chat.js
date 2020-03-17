@@ -46,6 +46,12 @@ function login() {
     let login_username = document.getElementById("login_username").value;
     let login_password = document.getElementById("login_password").value;
 
+    const regex = /^[\sa-zA-Z0-9,.:;"?!@#$%^&*()_+<>]+$/g;
+    if(!login_username.match(regex)) {
+        document.getElementById("wrong-input-login").style.visibility = "visible";
+        return;
+    }
+
     let login = document.getElementById("login");
     login.style.display="none";
     let register = document.getElementById("register");
@@ -67,7 +73,15 @@ function logout() {
 
 //sign up
 function signup() {
+    let register_username = document.getElementById("register_username").value;
+    let register_password = document.getElementById("register_password").value;
+    let register_repassword = document.getElementById("register_repassword").value;
 
+    const regex = /^[\sa-zA-Z0-9,.:;"?!@#$%^&*()_+<>]+$/g;
+    if(!register_username.match(regex) || register_password !== register_repassword) {
+        document.getElementById("wrong-input-register").style.visibility = "visible";
+        return;
+    }
     closePanel();
 }
 
@@ -92,7 +106,7 @@ function groupMem(){
 function roomList() {
     let list_room = document.getElementById("room-list");
     list_room.innerHTML = "            <div class=\"form-group\">" +
-        "                <label>Room Name</label>" +
+        "                <label>Main Lobby                                  </label>" +
         "                <label>Creater: user1</label>" +
         "                <button class=\"btn btn-outline-primary\" type=\"button\" onclick=\"enterRoom(0)\">Enter</button>" +
         "            </div>";
@@ -144,7 +158,8 @@ function sendMsg() {
     let input = document.getElementById("message");
     let message = input.value;
 
-    let select = document.getElementById("inputGroupSelect01").value;
+    let select = document.getElementById("inputGroupSelect01");
+    toWhom = select.value;
 
     socketio.emit("message_to_server", {message:message,room:currentRoom});
 
@@ -152,6 +167,8 @@ function sendMsg() {
 }
 
 let currentRoom = -1;
+let toWhom = 0;
+let fromWhom = 0;
 let socketio = io.connect();
 socketio.on("message_to_client",function(data) {
     if(data['room'] === currentRoom) {
