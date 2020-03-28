@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <script src="/socket.io/socket.io.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="chat.js"></script>
 
 <body>
@@ -23,13 +24,13 @@
         <li id="logout">
             <button class="nav-link btn btn-link" onclick="logout()">Log out</button>
         </li>
-        <li>
+        <li id="btn_groupMem">
             <button class="nav-link btn btn-link" onclick="showMembers()">Group Members</button>
         </li>
-        <li>
+        <li id="btn_createRoom">
             <button class="nav-link btn btn-link" onclick="showPanelNewRoom()">Create Room</button>
         </li>
-        <li>
+        <li id="btn_roomList">
             <button class="nav-link btn btn-link" onclick="showPanelAllRooms()">Room List</button>
         </li>
         <li>
@@ -94,7 +95,7 @@
                 <input type="checkbox" aria-label="Checkbox for following text input" id="private">    Private
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword">Password(Your password will be ignored unless you check 'Private')</label>
+                <label for="private_password">Password(Your password will be ignored unless you check 'Private')</label>
                 <input type="password" class="form-control" id="private_password">
             </div>
             <div class="form-group">
