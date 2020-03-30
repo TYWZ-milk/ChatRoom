@@ -17,7 +17,7 @@ function showLogin() {
 
 function showRegister() {
     let panel = document.getElementById("panel_register");
-    panel.style.visibility="visible";
+    panel.style.visibilityx="visible";
 }
 
 function showPanelAllRooms() {
@@ -170,10 +170,19 @@ function groupMemChat() {
         .then(function (response) {
             let members = response.data.members;
             let list_user = document.getElementById("inputGroupSelect01");
-            list_user.innerHTML = "<option selected value=\"0\">Public</option>";
+            let option = document.createElement("option");
+            option.value = "0";
+            option.selected = true;
+            option.innerText = "Public";
+            list_user.appendChild(option);
+            // list_user.innerHTML = "<option selected value=\"0\">Public</option>";
 
             for(let i =0;i<members.length;i++){
-                    list_user.innerHTML += "<option value=\""+members[i].user_id+"\">"+members[i].username+"</option>";
+                let option = document.createElement("option");
+                option.value = members[i].user_id;
+                option.selected = true;
+                option.innerText = members[i].username;
+                list_user.appendChild(option);
             }
 
         })
@@ -193,6 +202,26 @@ function groupMem(){
             let list_user = document.getElementById("list-user");
             if(response.data.message === "true"){
                 for(let i =0;i<members.length;i++){
+
+                    // let divElement = document.createElement("div");
+                    // divElement.setAttribute('class','form-group');
+                    // list_user.appendChild(divElement);
+                    // let labelElement = document.createElement("label");
+                    // labelElement.innerText = members[i].username;
+                    // divElement.appendChild(labelElement);
+                    // let btn_remove=document.createElement("button");
+                    // btn_remove.setAttribute('class','btn btn-outline-danger');
+                    // btn_remove.setAttribute('type','button');
+                    // btn_remove.onclick = function(){ removeuser(members[i].user_id) };
+                    // btn_remove.innerText = "Remove";
+                    // divElement.appendChild(btn_remove);
+                    // let btn_ban=document.createElement("button");
+                    // btn_ban.setAttribute('class','btn btn-outline-secondary');
+                    // btn_ban.setAttribute('type','button');
+                    // btn_ban.onclick = function(){ banuser(members[i].user_id) };
+                    // btn_ban.innerText = "Ban";
+                    // divElement.appendChild(btn_ban);
+
                     list_user.innerHTML +="            <div class=\"form-group\">" +
                         "                <label>"+members[i].username+"</label>" +
                         "                <button class=\"btn btn-outline-danger\" type=\"button\" onclick=\"removeuser("+members[i].user_id+")\">Remove</button>" +
@@ -202,6 +231,14 @@ function groupMem(){
             }
             else{
                 for(let i =0;i<members.length;i++){
+
+                    // let divElement = document.createElement("div");
+                    // divElement.setAttribute('class','form-group');
+                    // list_user.appendChild(divElement);
+                    // let labelElement = document.createElement("label");
+                    // labelElement.innerText = members[i].username;
+                    // divElement.appendChild(labelElement);
+
                     list_user.innerHTML +="            <div class=\"form-group\">" +
                         "                <label>"+members[i].username+"</label>" +
                         "            </div>";
@@ -252,6 +289,23 @@ function roomList() {
             let rooms = response.data.rooms;
             let list_room = document.getElementById("room-list");
             for(let i =0;i<rooms.length;i++){
+
+                // let divElement = document.createElement("div");
+                // divElement.setAttribute('class','form-group');
+                // list_room.appendChild(divElement);
+                // let labelElement = document.createElement("label");
+                // labelElement.innerText = rooms[i].roomname;
+                // divElement.appendChild(labelElement);
+                // let labelElement2 = document.createElement("label");
+                // labelElement2.innerText = "Creater:"+rooms[i].creater;
+                // divElement.appendChild(labelElement2);
+                // let btn_ban=document.createElement("button");
+                // btn_ban.setAttribute('class','btn btn-outline-primary');
+                // btn_ban.setAttribute('type','button');
+                // btn_ban.onclick = function(){ enterRoom(rooms[i].room_id,rooms[i].roomname) };
+                // btn_ban.innerText = "Enter";
+                // divElement.appendChild(btn_ban);
+
                 list_room.innerHTML +="            <div class=\"form-group\">" +
                     "                <label>"+rooms[i].roomname+"</label>" +
                     "                <label>Creater:"+rooms[i].creater+"</label>" +
@@ -388,6 +442,29 @@ socketio.on("message_to_client",function(data) {
         //Append an HR thematic break and the escaped HTML of the new message
         let chat_content = document.getElementById("chat_content");
         let time = new Date().toLocaleString();
+
+        let divElement = document.createElement("div");
+        divElement.setAttribute('class','chat-mes');
+        chat_content.appendChild(divElement);
+        let divElement2 = document.createElement("div");
+        divElement2.setAttribute('class','card-body');
+        divElement.appendChild(divElement2);
+        let h6Element = document.createElement("h6");
+        h6Element.setAttribute('class','card-subtitle mb-2 text-muted');
+        h6Element.innerText = username;
+        divElement2.appendChild(h6Element);
+        let pElement = document.createElement("p");
+        pElement.setAttribute('class','card-text');
+        pElement.innerText = data['message'];
+        divElement2.appendChild(pElement);
+        let pElement2 = document.createElement("p");
+        pElement2.setAttribute('class','card-text');
+        divElement2.appendChild(pElement2);
+        let small = document.createElement("small");
+        small.setAttribute('class','text-muted');
+        small.innerText = time;
+        pElement2.appendChild(small);
+
         chat_content.innerHTML += "        <div class=\"chat-mes\">" +
             "            <div class=\"card-body\">" +
             "                <h6 class=\"card-subtitle mb-2 text-muted\">"+username+"</h6>" +
