@@ -465,13 +465,13 @@ socketio.on("message_to_client",function(data) {
         small.innerText = time;
         pElement2.appendChild(small);
 
-        chat_content.innerHTML += "        <div class=\"chat-mes\">" +
-            "            <div class=\"card-body\">" +
-            "                <h6 class=\"card-subtitle mb-2 text-muted\">"+username+"</h6>" +
-            "                <p class=\"card-text\">" + data['message'] + "</p>" +
-            "                <p class=\"card-text\"><small class=\"text-muted\">" + time + "</small></p>" +
-            "            </div>" +
-            "        </div>";
+        // chat_content.innerHTML += "        <div class=\"chat-mes\">" +
+        //     "            <div class=\"card-body\">" +
+        //     "                <h6 class=\"card-subtitle mb-2 text-muted\">"+username+"</h6>" +
+        //     "                <p class=\"card-text\">" + data['message'] + "</p>" +
+        //     "                <p class=\"card-text\"><small class=\"text-muted\">" + time + "</small></p>" +
+        //     "            </div>" +
+        //     "        </div>";
         window.scrollTo(0, document.body.scrollHeight * 2);
     }
 });
